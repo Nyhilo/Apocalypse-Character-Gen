@@ -1,0 +1,19 @@
+What kind of movies did you watch as a kid?
+    Comedy; thirst; energy; accuracy; strength; paintolerance; speed; perception; foodmods; bonustraits; occupationtraits
+    Comedy; 0; 0; 0; 0; 0; 0; 0; ;+1 to speach, +3 to initiative ; 
+    Horror; 0; 0; 0; 0; 0; 0; 0; ;Fearless ; 
+    Mystery; 0; 0; 0; 0; 0; 0; 0; ;+1 to scavenging ;
+    Action; 0; 0; 0; 0; 0; 0; 0; ;+1 to strength and speed in combat ;
+
+What are your eating habits like?
+    Vegetarian; 0; 30; 0; 0; 0; 0; 0; -5 max energy for the day if you consume meat; ;
+    Fast Food, mostly; 0; 10; 0; 0; 0; 0; 0; +5 energy for the day if you eat healthy; ;
+    Lean Meat Lover; 0; 40; 0; 0; 0; 0; 0; -5 energy for the day if you consume greasy food; ;
+    Whatever's around; 0; 20; 0; 0; 0; 0; 0; None; ;
+
+What sports did you play growing up?
+    Wrestling; 0; 0; 0; 4; 0; 1; 0; ; ;
+    Soccer; 0; 0; 0; 2; 0; 3; 0; ; ;
+    Track; 0; 0; 0; 1; 0; 4; 0; ; ;
+    Football; 0; 0; 0; 2; 0; 3; 0; ; ;
+    Didn't play any; 0; 0; 1; 1; 0; 1; 1; ; ;
