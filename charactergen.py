@@ -48,11 +48,12 @@ class Character (object):
         occupationTraits = "\t" + self.getOccupationTraits().replace("\n","\n\t")
         bonusTraits = "\t" + self.getBonusTraits().replace("\n","\n\t")
 
-        output = "\nName:\tPlayer:\nThirst: {}/{}\tEnergy: {}/{}\nAcc: {}\tPerc: {}\nStr: {}\tSpd : {}\nPain Tolerence: {}\n\nFood Mods:\n{}\n\nOccupation Traits:\n{}\n\nBonus Traits:\n{}\n"
+        output = "\nName:\tPlayer:\nThirst: {}/{}\tEnergy: {}/{}\nPain Tolerence: {}\nAcc: {}\tPerc: {}\nStr: {}\tSpd : {}\n\nFood Mods:\n{}\n\nOccupation Traits:\n{}\n\nBonus Traits:\n{}\n"
         print(output.format(self.getRandomThrist(), self.getThirst(), self.getRandomEnergy(), self.getEnergy(),
+                self.getPainTolerence(),
                 self.getAccuracy(), self.getPerception(),
                 self.getStrength(), self.getSpeed(),
-                self.getPainTolerence(), foodMods, occupationTraits, bonusTraits))
+                foodMods, occupationTraits, bonusTraits))
 
     def load(self, filename):
         with open(filename,'r') as f:
@@ -60,7 +61,7 @@ class Character (object):
 
         questions = []
 
-        while len(file) > 0
+        while len(file) > 0:
             questions.append(file.pop(0))
 
 
