@@ -11,29 +11,65 @@ Format:
     text; thirst; energy; accuracy; strength; pain tolerance; speed; perception; food mods; bonus traits; occupation traits
 """
 
+from random import randint
+
 class Character (object):
     """docstring for Character  """
     def __init__(self, thirst=0, energy=0, accuracy=0, strength=0, painTolerence=0, speed=0, perception=0,
                     foodMods="", bonusTraits="", occupationTraits=""):
-        statblock = [thirst, energy, accuracy, strength, painTolerence, speed, perception, foodMods, bonusTraits, occupationTraits]
+        self.statblock = [thirst, energy, accuracy, strength, painTolerence, speed, perception, foodMods, bonusTraits, occupationTraits]
 
-    def getThirst (self): return self.stablock[0]
+    def getThirst (self): return self.statblock[0]
 
-    def getEnergy (self): return self.stablock[1]
+    def getRandomThrist (self): return randint(0,self.getThirst())
 
-    def getAccuracy (self): return self.stablock[2]
+    def getEnergy (self): return self.statblock[1]
 
-    def getStrength (self): return self.stablock[3]
+    def getRandomEnergy (self): return randint(0,self.getEnergy())
 
-    def getPainTolerence (self): return self.stablock[4]
+    def getAccuracy (self): return self.statblock[2]
 
-    def getSpeed (self): return self.stablock[5]
+    def getStrength (self): return self.statblock[3]
 
-    def getPerception (self): return self.stablock[6]
+    def getPainTolerence (self): return self.statblock[4]
 
-    def getFoodMods (self): return self.stablock[7]
+    def getSpeed (self): return self.statblock[5]
 
-    def getBonusTraits (self): return self.stablock[8]
+    def getPerception (self): return self.statblock[6]
 
-    def getOccupationTraits (self): return self.stablock[9]
+    def getFoodMods (self): return self.statblock[7]
 
+    def getBonusTraits (self): return self.statblock[8]
+
+    def getOccupationTraits (self): return self.statblock[9]
+
+    def printStatBlock (self):
+        foodMods = "\t" + self.getFoodMods().replace("\n","\n\t")
+        occupationTraits = "\t" + self.getOccupationTraits().replace("\n","\n\t")
+        bonusTraits = "\t" + self.getBonusTraits().replace("\n","\n\t")
+
+        output = "\nName:\tPlayer:\nThirst: {}/{}\tEnergy: {}/{}\nAcc: {}\tPerc: {}\nStr: {}\tSpd : {}\nPain Tolerence: {}\n\nFood Mods:\n{}\n\nOccupation Traits:\n{}\n\nBonus Traits:\n{}\n"
+        print(output.format(self.getRandomThrist(), self.getThirst(), self.getRandomEnergy(), self.getEnergy(),
+                self.getAccuracy(), self.getPerception(),
+                self.getStrength(), self.getSpeed(),
+                self.getPainTolerence(), foodMods, occupationTraits, bonusTraits))
+
+    def load(self, filename):
+        with open(filename,'r') as f:
+            f = file.readlines()
+
+        questions = []
+
+        while len(file) > 0
+            questions.append(file.pop(0))
+
+
+########
+# Main #
+########
+def main():
+    character = Character()
+    character.printStatBlock()
+
+if __name__ == '__main__':
+    main()
