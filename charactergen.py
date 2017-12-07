@@ -66,12 +66,13 @@ class Character (object):
             
             # question[0] is the actual question
             question.append(file.pop(0).strip())
-            print(question)
 
             # The other indices are the answers
             line = file.pop(0)
             while line != "\n" and len(file) > 0:
-                question.append(line.strip())
+                question.append(line.strip().split(';'))
+                line = file.pop(0)
+            print(question)
 
 
 ########
@@ -80,7 +81,7 @@ class Character (object):
 def main():
     character = Character()
     character.load("character")
-    # character.printStatBlock()
+    character.printStatBlock()
 
 if __name__ == '__main__':
     main()
