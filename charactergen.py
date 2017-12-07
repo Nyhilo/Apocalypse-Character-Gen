@@ -57,12 +57,21 @@ class Character (object):
 
     def load(self, filename):
         with open(filename,'r') as f:
-            f = file.readlines()
+            file = f.readlines()
 
         questions = []
 
         while len(file) > 0:
-            questions.append(file.pop(0))
+            question = []
+            
+            # question[0] is the actual question
+            question.append(file.pop(0).strip())
+            print(question)
+
+            # The other indices are the answers
+            line = file.pop(0)
+            while line != "\n" and len(file) > 0:
+                question.append(line.strip())
 
 
 ########
@@ -70,7 +79,8 @@ class Character (object):
 ########
 def main():
     character = Character()
-    character.printStatBlock()
+    character.load("character")
+    # character.printStatBlock()
 
 if __name__ == '__main__':
     main()
