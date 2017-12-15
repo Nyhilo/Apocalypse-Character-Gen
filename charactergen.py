@@ -15,9 +15,10 @@ from random import randint
 
 class Character (object):
     """docstring for Character  """
-    def __init__(self, thirst=0, energy=0, accuracy=0, strength=0, painTolerence=0, speed=0, perception=0,
+    def __init__(self, filename = "", thirst=0, energy=0, accuracy=0, strength=0, painTolerence=0, speed=0, perception=0,
                     foodMods="", bonusTraits="", occupationTraits=""):
         self.statblock = [thirst, energy, accuracy, strength, painTolerence, speed, perception, foodMods, bonusTraits, occupationTraits]
+        if filename != "": self.load(filename)
 
     def getThirst (self): return self.statblock[0]
 
@@ -63,15 +64,19 @@ class Character (object):
 
         while len(file) > 0:
             question = []
-            
+
             # question[0] is the actual question
             question.append(file.pop(0).strip())
-            print(question)
 
             # The other indices are the answers
             line = file.pop(0)
             while line != "\n" and len(file) > 0:
+                line = file.pop(0)
                 question.append(line.strip())
+
+            questions.append(question)
+
+        return questions
 
 
 ########
