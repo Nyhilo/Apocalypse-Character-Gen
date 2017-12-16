@@ -45,6 +45,10 @@ class Character (object):
 
     def getOccupationTraits (self): return self.statblock[9]
 
+    def getStatName(self, index):
+        l = ["thirst", "energy", "accuracy", "strength", "painTolerence", "speed", "perception", "foodMods", "bonusTraits", "occupationTraits"]
+        return l[index]
+
     def printStatBlock (self):
         foodMods = "\t" + self.getFoodMods().replace("\n","\n\t")
         occupationTraits = "\t" + self.getOccupationTraits().replace("\n","\n\t")
@@ -122,7 +126,11 @@ class Character (object):
         for i in range(len(statSet)):
             # If statSet[i] is an integer, this performs integer division
             # If statSet[i] is a string, this concatenates
-            self.statblock[i] += statSet[i]
+            try:
+                self.statblock[i] += statSet[i]
+            except TypeError:
+                print("Set {} corrupted\nTried to add disparate types '{}' and {}: {}.".format(statSet, statSet[i].strip(), type(self.statblock[i]), self.getStatName(i)))
+                quit()
 
     def ask(self, qIndex):
         """
