@@ -4,12 +4,14 @@ What kind of movies did you watch as a kid?
     Horror;0;0;0;0;0;0;0; ;Fearless;
     Mystery;0;0;0;0;0;0;0; ;+1 to scavenging;
     Action;0;0;0;0;0;0;0; ;+1 to strength and speed in combat;
+    Test answer;1;1;1;1;1;1;1;Some Text; Some more Text;
+
 
 What are your eating habits like?
     Vegetarian;0;30;0;0;0;0;0;-5 max energy for the day if you consume meat; ;
     Fast Food, mostly;0;10;0;0;0;0;0;+5 energy for the day if you eat healthy; ;
     Lean Meat Lover;0;40;0;0;0;0;0;-5 energy for the day if you consume greasy food; ;
-    Whatever's around;0;20;0;0;0;0;0;None; ;
+    Whatever's around;0;20;0;0;0;0;0; ; ;
 
 What sports did you play growing up?
     Wrestling;0;0;0;4;0;1;0; ; ;

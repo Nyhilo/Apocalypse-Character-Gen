@@ -15,16 +15,11 @@ from random import randint
 
 class Character (object):
     """docstring for Character  """
-<<<<<<< HEAD
     def __init__(self, filename="", thirst=0, energy=0, accuracy=0, strength=0, painTolerence=0, speed=0, perception=0,
-=======
-    def __init__(self, filename = "", thirst=0, energy=0, accuracy=0, strength=0, painTolerence=0, speed=0, perception=0,
->>>>>>> 589ff651e43fd5c372c1b35805b8340ca45b04f2
                     foodMods="", bonusTraits="", occupationTraits=""):
         questions = []
         if filename != "": self.load(filename)
         self.statblock = [thirst, energy, accuracy, strength, painTolerence, speed, perception, foodMods, bonusTraits, occupationTraits]
-        if filename != "": self.load(filename)
 
     def getThirst (self): return self.statblock[0]
 
@@ -55,7 +50,8 @@ class Character (object):
         occupationTraits = "\t" + self.getOccupationTraits().replace("\n","\n\t")
         bonusTraits = "\t" + self.getBonusTraits().replace("\n","\n\t")
 
-        output = "\nName:\tPlayer:\nThirst: {}/{}\tEnergy: {}/{}\nPain Tolerence: {}\nAcc: {}\tPerc: {}\nStr: {}\tSpd : {}\n\nFood Mods:\n{}\n\nOccupation Traits:\n{}\n\nBonus Traits:\n{}\n"
+        output = "\nName:\tPlayer:\nThirst: {}/{}\tEnergy: {}/{}\nPain Tolerence: {}\nAcc: {}\tPerc: {}\nStr: {}\tSpd : {}\n\nFood Mods:{}\n\nOccupation Traits:{}\n\nBonus Traits:{}\n"
+
         print(output.format(self.getRandomThrist(), self.getThirst(), self.getRandomEnergy(), self.getEnergy(),
                 self.getPainTolerence(),
                 self.getAccuracy(), self.getPerception(),
@@ -71,19 +67,77 @@ class Character (object):
         while len(file) > 0:
             question = []
 
-            # question[0] is the actual question
-            question.append(file.pop(0).strip())
+            question.append(file.pop(0).strip())    # question[0] is the actual question, the rest are answers
 
-            # The other indices are the answers
-            line = file.pop(0)
+            line = file.pop(0)                      # We don't strip() here so we can test for newlines
+
             while line != "\n" and len(file) > 0:
-                question.append(line.strip().split(';'))
+                line = line.strip().split(';')
+
+                question.append(line)
                 line = file.pop(0)
 
             questions.append(question)
 
         self.questions = questions
         return questions
+
+    def clear(error=""):
+        import platform
+        import os
+        if platform.system() == 'Windows':
+            _=os.system('cls')
+        else:
+            _=os.system('clear')
+
+        if error: print(error)
+
+    def input(self, promptText, indexRange):
+        try:
+            n = int(input(promptText))
+        except ValueError:
+            n = self.input("Please enter a number.\n> ", indexRange)
+
+        if n > (indexRange):
+            n = self.input("Please enter one of the choices above.\n> ", indexRange)
+
+        return n
+
+    def addStatBlock(self, statSet):
+        """
+        Adds the recieved statSet to the global stat block.
+        Dynamically summs numbers and concatenates strings
+        """
+        if len(statSet) != len(self.statblock):
+            exc = "{}\nStatSet incorrect length. Expected {}, got {}.".format(statSet, str(len(self.statblock)), str(len(statSet)))
+            raise Exception(exc)
+
+        for i in range(len(statSet)):          # Convert all the numbers in the array to usable integers
+            try:
+                statSet[i] = int(statSet[i])
+            except ValueError:
+                statSet[i] = "\n" + statSet[i]    # Adds a newline to the beginning of all strings
+                # pass
+
+        for i in range(len(statSet)):
+            # If statSet[i] is an integer, this performs integer division
+            # If statSet[i] is a string, this concatenates
+            self.statblock[i] += statSet[i]
+
+    def ask(self, qIndex):
+        """
+        Prints a question and a series of answers, then prompts for an answer.
+        Adds the relevant stats from the answer to the global stat block.
+        """
+        q = self.questions[qIndex]
+        
+        print(q[0])
+        for i in range(1, len(q)):
+            print("\t{}. {}".format(i,q[i][0]))
+
+        answer = self.input("> ",len(q)-1)
+
+        self.addStatBlock(q[answer][1:])            # Sends everything but the answer text to the statblock
 
 
 ########
@@ -92,12 +146,10 @@ class Character (object):
 def main():
     character = Character()
     character.load("character")
-<<<<<<< HEAD
-    for i in character.questions:
-        for j in i:
-            print(len(j))
-=======
->>>>>>> 589ff651e43fd5c372c1b35805b8340ca45b04f2
+    character.printStatBlock()
+    character.ask(0)
+    character.ask(1)
+    character.ask(2)
     character.printStatBlock()
 
 if __name__ == '__main__':
