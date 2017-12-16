@@ -85,7 +85,7 @@ class Character (object):
 def main():
     character = Character()
     character.load("character")
-    # character.printStatBlock()
+    character.printStatBlock()
 
 if __name__ == '__main__':
     main()
